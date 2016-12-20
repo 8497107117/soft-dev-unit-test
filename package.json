@@ -1,0 +1,22 @@
+{
+  "name": "test-hw3",
+  "version": "1.0.0",
+  "description": "unit test for softDev hw3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Taku",
+  "license": "ISC",
+  "dependencies": {
+    "qunit": "^0.9.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/8497107117/soft-dev-unit-test.git"
+  },
+  "bugs": {
+    "url": "https://github.com/8497107117/soft-dev-unit-test/issues"
+  },
+  "homepage": "https://github.com/8497107117/soft-dev-unit-test#readme"
+}

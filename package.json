@@ -9,7 +9,12 @@
   "author": "Taku",
   "license": "ISC",
   "dependencies": {
-    "qunit": "^0.9.1"
+    "jquery": "^3.1.1"
+  },
+  "devDependencies": {
+    "blanket": "^1.2.3",
+    "qunit": "^0.9.1",
+    "qunitjs": "^2.1.0"
   },
   "repository": {
     "type": "git",

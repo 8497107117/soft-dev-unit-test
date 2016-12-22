@@ -64,6 +64,4 @@ QUnit.module("Class Calc", () => {
             assert.deepEqual(testClass.toString(16), 'ffef', "change to base 16 with negative");
         });
     });
-    QUnit.module("member: exec", () => {
-    });
 });

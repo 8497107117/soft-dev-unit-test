@@ -64,4 +64,133 @@ QUnit.module("Class Calc", () => {
             assert.deepEqual(testClass.toString(16), 'ffef', "change to base 16 with negative");
         });
     });
+    QUnit.module("member: exec", () => {
+        QUnit.module("cmd", () => {
+            QUnit.module("", () => {
+                QUnit.test("cmd: c", (assert) => {
+                    testClass.buffer = [['val', 17]];
+                    testClass.base = 10;
+                    testClass.value = 17;
+                    testClass.calc = true;
+                    testClass.exec('c');
+                    assert.strictEqual(testClass.value, 0, "value correct");
+                    assert.deepEqual(testClass.buffer, [['val', 0]], "buffer correct");
+                    assert.strictEqual(testClass.calc, false, "calc correct");
+                });
+            });
+            QUnit.module("cmd: ce", () => {
+                QUnit.test("val", (assert) => {
+                    testClass.buffer = [['val', 17], ['oper', 'add'], ['val', 18]];
+                    testClass.base = 10;
+                    testClass.value = 18;
+                    testClass.exec('ce');
+                    assert.strictEqual(testClass.value, 0, "value correct");
+                    assert.deepEqual(testClass.buffer, [['val', 17], ['oper', 'add'], ['val', 0]], "buffer correct");
+                });
+                QUnit.test("oper", (assert) => {
+                    testClass.buffer = [['val', 17], ['oper', 'add']];
+                    testClass.base = 10;
+                    testClass.value = 17;
+                    testClass.exec('ce');
+                    assert.strictEqual(testClass.value, 0, "value correct");
+                    assert.deepEqual(testClass.buffer, [['val', 0]], "buffer correct");
+                });
+            });
+            QUnit.module("cmd: bs", (assert) => {
+                QUnit.test("val", (assert) => {
+                    testClass.buffer = [['val', 17]];
+                    testClass.base = 10;
+                    testClass.value = 17;
+                    testClass.exec('bs');
+                    assert.strictEqual(testClass.value, 1, "value correct");
+                    assert.deepEqual(testClass.buffer, [['val', 1]], "buffer correct");
+                });
+                QUnit.test("oper", (assert) => {
+                    testClass.buffer = [['val', 17], ['oper', 'add']];
+                    testClass.base = 10;
+                    testClass.value = 17;
+                    testClass.exec('bs');
+                    assert.strictEqual(testClass.value, 1, "value correct");
+                    assert.deepEqual(testClass.buffer, [['val', 17], ['oper', 'add'], ['val', 1]], "buffer correct");
+                });
+            });
+            QUnit.module("cmd: neg", () => {
+                QUnit.test("val", (assert) => {
+                    testClass.buffer = [['val', 17]];
+                    testClass.base = 10;
+                    testClass.value = 17;
+                    testClass.exec('neg');
+                    assert.strictEqual(testClass.value, -17, "value correct");
+                    assert.deepEqual(testClass.buffer, [['val', -17]], "buffer correct");
+                });
+                QUnit.test("oper", (assert) => {
+                    testClass.buffer = [['val', 17], ['oper', 'add']];
+                    testClass.base = 10;
+                    testClass.value = 17;
+                    testClass.exec('neg');
+                    assert.strictEqual(testClass.value, -17, "value correct");
+                    assert.deepEqual(testClass.buffer, [['val', 17], ['oper', 'add'], ['val', -17]], "buffer correct");
+                });
+            });
+            QUnit.module("cmd: calc", () => {
+                QUnit.test("val", (assert) => {
+                    testClass.buffer = [['val', 17], ['oper', 'add'], ['val', 18]];
+                    testClass.base = 10;
+                    testClass.value = 18;
+                    testClass.calc = false;
+                    testClass.exec('calc');
+                    assert.strictEqual(testClass.value, 35, "value correct");
+                    assert.deepEqual(testClass.buffer, [['val', 35]], "buffer correct");
+                    assert.strictEqual(testClass.calc, true, "calc correct");
+                });
+                QUnit.test("oper", (assert) => {
+                    testClass.buffer = [['val', 17], ['oper', 'add']];
+                    testClass.base = 10;
+                    testClass.value = 17;
+                    testClass.calc = false;
+                    testClass.exec('calc');
+                    assert.strictEqual(testClass.value, 34, "value correct");
+                    assert.deepEqual(testClass.buffer, [['val', 34]], "buffer correct");
+                    assert.strictEqual(testClass.calc, true, "calc correct");
+                });
+            });
+        });
+        QUnit.module("val", () => {
+            QUnit.test("val", (assert) => {
+                testClass.reset(10);
+                testClass.exec('val-1');
+                testClass.exec('val-7');
+                assert.strictEqual(testClass.value, 17, "value correct");
+                assert.deepEqual(testClass.buffer, [['val', 17]], "buffer correct");
+            });
+            QUnit.test("oper", (assert) => {
+                testClass.reset(10);
+                testClass.exec('val-1');
+                testClass.exec('val-7');
+                testClass.exec('oper-add');
+                testClass.exec('val-1');
+                assert.strictEqual(testClass.value, 1, "value correct");
+                assert.deepEqual(testClass.buffer, [['val', 17], ['oper', 'add'], ['val', 1]], "buffer correct");
+            });
+        });
+        QUnit.module("oper", () => {
+            QUnit.test("val", (assert) => {
+                testClass.reset(10);
+                testClass.exec('val-1');
+                testClass.exec('val-7');
+                testClass.exec('oper-add');
+                assert.strictEqual(testClass.value, 17, "value correct");
+                assert.deepEqual(testClass.buffer, [['val', 17], ['oper', 'add']], "buffer correct");
+            });
+            QUnit.test("oper", (assert) => {
+                testClass.reset(10);
+                testClass.exec('val-1');
+                testClass.exec('val-7');
+                testClass.exec('oper-add');
+                testClass.exec('oper-sub');
+                assert.strictEqual(testClass.value, 17, "value correct");
+                assert.deepEqual(testClass.buffer, [['val', 17], ['oper', 'sub']], "buffer correct");
+            });
+        });
+    });
 });

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>render test</title>
+        <script src="../../../node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mousetrap/1.4.6/mousetrap.min.js"></script>
+        <link rel="stylesheet" href="../../../app/style.css"/>
+        <link rel="stylesheet" href="../../../node_modules/qunitjs/qunit/qunit.css"/>
+        <script src="../../../node_modules/qunitjs/qunit/qunit.js"></script>
+        <script src="../../../node_modules/blanket/dist/qunit/blanket.js"></script>
+        <script src="../../cal/prototype/prototype.js"></script>
+        <script src="../../cal/evaluate/evaluate.js"></script>
+        <script src="../../cal/checkType/checkType.js"></script>
+        <script src="../../cal/calc/calc.js"></script>
+        <script src="render.js" data-cover></script>
+        <script src="render.test.js"></script>
+    </head>
+    <body>
+        <div id="qunit"></div>
+        <div id="qunit-fixture"></div>
+        <div class="calc">
+            <div class="title">calculator</div>
+            <div class="display">
+                <div class="value">0</div>
+                <div class="bases">
+                    <div class="base hex" data-content="16">0</div>
+                    <div class="base dec" data-content="10">0</div>
+                    <div class="base oct" data-content="8">0</div>
+                    <div class="base bin" data-content="2">0</div>
+                </div>
+            </div>
+            <div class="buttons">
+                <div class="row">
+                    <div class="button"></div>
+                    <div class="button" data-content="oper-mod">Mod</div>
+                    <div class="button" data-content="ce">CE</div>
+                    <div class="button" data-content="c">C</div>
+                    <div class="button" data-content="bs">←</div>
+                    <div class="button" data-content="oper-div">/</div>
+                </div>
+                <div class="row">
+                    <div class="button hex" data-content="val-a">A</div>
+                    <div class="button hex" data-content="val-b">B</div>
+                    <div class="button oct" data-content="val-7">7</div>
+                    <div class="button dec" data-content="val-8">8</div>
+                    <div class="button dec" data-content="val-9">9</div>
+                    <div class="button" data-content="oper-mul">×</div>
+                </div>
+                <div class="row">
+                    <div class="button hex" data-content="val-c">C</div>
+                    <div class="button hex" data-content="val-d">D</div>
+                    <div class="button oct" data-content="val-4">4</div>
+                    <div class="button oct" data-content="val-5">5</div>
+                    <div class="button oct" data-content="val-6">6</div>
+                    <div class="button" data-content="oper-sub">−</div>
+                </div>
+                <div class="row">
+                    <div class="button hex" data-content="val-e">E</div>
+                    <div class="button hex" data-content="val-f">F</div>
+                    <div class="button bin" data-content="val-1">1</div>
+                    <div class="button oct" data-content="val-2">2</div>
+                    <div class="button oct" data-content="val-3">3</div>
+                    <div class="button" data-content="oper-add">＋</div>
+                </div>
+                <div class="row">
+                    <div class="button"></div>
+                    <div class="button"></div>
+                    <div class="button" data-content="neg">±</div>
+                    <div class="button bin" data-content="val-0">0</div>
+                    <div class="button"></div>
+                    <div class="button" data-content="calc">＝</div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

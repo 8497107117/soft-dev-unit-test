@@ -5,3 +5,10 @@ function isVal(cmd) {
 function isOper(cmd) {
   return cmd[0]==='oper';
 }
+
+if(module) {
+    module.exports = {
+        isVal: isVal,
+        isOper: isOper
+    };
+}

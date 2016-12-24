@@ -106,9 +106,29 @@
 				- ``17 +`` and click ``exec('oper-sub')`` then ``17 -``
 
 - Source code : main.js
-	- function : ``render`` in test/main/render
-	
-	- DOM & button trigger : ``DOM`` in test/main/dom
+	- function : ``render`` in test/main/render  
+	For each base, there are 3 states : ``initial``, ``during input``, ``calculated``.
+	For each state, check
+		- ``$('.calc').hasClass('???')``, ``???`` is according to ``base``
+		- ``$('.???.button').hasClass('disabled')``, ``???`` is according to ``base``
+		- ``$('.display .value').html()``
+		- ``$('.base.hex').html()``
+		- ``$('.base.dec').html()``
+		- ``$('.base.oct').html()``
+		- ``$('.base.bin').html()``
+		
+	- DOM & button trigger : ``DOM`` in test/main/dom  
+	Check the help information dom
+		- Opend by help button, closed by help button
+			- $('.help-btn').trigger('click')
+			- check ``$('.help-wrapper').css('display').indexOf('none') <= -1``
+			- $('.help-btn').trigger('click')
+			- check ``$('.help-wrapper').css('display').indexOf('none') > -1``
+		- Opend by help button, closed by help wrapper
+			- $('.help-btn').trigger('click')
+			- check ``$('.help-wrapper').css('display').indexOf('none') <= -1``
+			- $('.help-wrapper').trigger('click')
+			- check ``$('.help-wrapper').css('display').indexOf('none') > -1``
 
 # The portion can be runned on NodeJS
 

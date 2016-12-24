@@ -131,6 +131,7 @@
 			- check ``$('.help-wrapper').css('display').indexOf('none') > -1``
 
 # The portion can be runned on NodeJS
+- CheckType
 
 # Coverage  
 

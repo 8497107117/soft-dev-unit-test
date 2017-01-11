@@ -11,20 +11,25 @@
 	- ``npm install``
 
 # What it test?
-	Divide source code into several files
 	
 - Source code : calc.js
-	- prototype : ``Array.prototype.back`` in test/cal/prototype  
+	- prototype : ``Array.prototype.back``   
 		
-		3 types of array
+		6 types of array
 		- ordinary array : ``[0, 1, 2, 3]``.  
 		array.back() : 3
 		- holes array : ``[0, undefined, 2, undefined]``.  
 		array.back() : undefined
 		- null array : ``[]``.  
 		array.back() : undefined
+		- number array : ``[0, 1, 2, 3]``.  
+		array.back() : 3
+		- string array : ``['test']``.  
+		array.back() : 'test'
+		- object array : ``[{ test: 'test', test2: 'test2' }]``.  
+		array.back() : [{ test: 'test', test2: 'test2' }]
 
-	- function : ``evaluate`` in test/cal/evaluate  
+	- function : ``evaluate``   
 		
 		Since class Calc just store base 10 in the class, just need to test base 10.
 		- without negative number
@@ -50,7 +55,7 @@
 			- advanced test4 : ``15 % -4 * -3 = -9``
 			- advanced test5 : ``2 + 3 * -4 - -8 / 2 + -7 % -2 = -7``
 
-	- function : ``isVal & isOper`` in test/cal/checkType  
+	- function : ``isVal & isOper``   
 		
 		2 parameter : val = ``['val', 1]``, oper = ``['oper', 'add']``
 		- ``isVal(val) = true``
@@ -58,7 +63,7 @@
 		- ``isOper(val) = false``
 		- ``isOper(oper) = true``
 
-	- class : ``Calc`` in test/cal/calc
+	- class : ``Calc`` 
 		- function : ``reset``  
 		execute ``reset(base)`` & ``reset()`` for each base.  
 		After each execution, check  
@@ -106,7 +111,7 @@
 				- ``17 +`` and click ``exec('oper-sub')`` then ``17 -``
 
 - Source code : main.js
-	- function : ``render`` in test/main/render  
+	- function : ``render``   
 	For each base, there are 3 states : ``initial``, ``during input``, ``calculated``.
 	For each state, check
 		- ``$('.calc').hasClass('???')``, ``???`` is according to ``base``
@@ -117,7 +122,7 @@
 		- ``$('.base.oct').html()``
 		- ``$('.base.bin').html()``
 		
-	- DOM & button trigger : ``DOM`` in test/main/dom  
+	- DOM & button trigger : ``DOM``   
 	Check the help information dom
 		- Opend by help button, closed by help button
 			- $('.help-btn').trigger('click')
@@ -131,12 +136,14 @@
 			- check ``$('.help-wrapper').css('display').indexOf('none') > -1``
 
 # The portion can be runned on NodeJS
-- CheckType
+
+- CheckType : ``./node_modules/.bin/qunit -c test-cli/checkType/checkType.js -t test-cli/checkType/checkType.test.js``
 
 # Coverage  
 
-	Even I have setted the blanket, I can't resolve the error of blanket loading the data-cover file timeout.
-	So I can't check the coverage. But I think this test has almost 70~80% coverage on the whole source code.
+- calc.js : ``54.02%``
+- main.js : ``67.35%``
+- total : ``58.82%``
 
 # The bug unit test found
 

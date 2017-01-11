@@ -3,19 +3,16 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <title>render test</title>
-        <script src="../../../node_modules/jquery/dist/jquery.min.js"></script>
+        <title>main test</title>
+        <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mousetrap/1.4.6/mousetrap.min.js"></script>
-        <link rel="stylesheet" href="../../../app/style.css"/>
-        <link rel="stylesheet" href="../../../node_modules/qunitjs/qunit/qunit.css"/>
-        <script src="../../../node_modules/qunitjs/qunit/qunit.js"></script>
-        <script src="../../../node_modules/blanket/dist/qunit/blanket.js"></script>
-        <script src="../../cal/prototype/prototype.js"></script>
-        <script src="../../cal/evaluate/evaluate.js"></script>
-        <script src="../../cal/checkType/checkType.js"></script>
-        <script src="../../cal/calc/calc.js"></script>
-        <script src="render.js" data-cover></script>
-        <script src="render.test.js"></script>
+        <link rel="stylesheet" href="../../app/style.css"/>
+        <link rel="stylesheet" href="../../node_modules/qunitjs/qunit/qunit.css"/>
+        <script src="../../node_modules/qunitjs/qunit/qunit.js"></script>
+        <script src="../../node_modules/blanket/dist/qunit/blanket.js"></script>
+        <script src="../calc/calc.js"></script>
+        <script src="main.es5.js" data-cover></script>
+        <script src="main.test.js"></script>
     </head>
     <body>
         <div id="qunit"></div>
@@ -74,5 +71,23 @@
                 </div>
             </div>
         </div>
+        <div class="help-wrapper" style="display: none">
+            <div class="help">
+                <table>
+                    <tr><td>0~9 a~f</td><td>數字區</td></tr>
+                    <tr><td>+-*/%</td><td>運算符號</td></tr>
+                    <tr><td>backspace</td><td>刪除</td></tr>
+                    <tr><td>= enter</td><td>結果</td></tr>
+                    <tr><td>esc</td><td>全部清除</td></tr>
+                    <tr><td>ce</td><td>清除輸入欄</td></tr>
+                    <tr><td>hex</td><td>切換至 16 進制</td></tr>
+                    <tr><td>dec</td><td>切換至 10 進制</td></tr>
+                    <tr><td>oct</td><td>切換至 8 進制</td></tr>
+                    <tr><td>bin</td><td>切換至 2 進制</td></tr>
+                    <tr><td>?</td><td>顯示說明視窗</td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="help-btn">？</div>
     </body>
 </html>

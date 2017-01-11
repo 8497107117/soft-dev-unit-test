@@ -3,20 +3,17 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <title>DOM test</title>
-        <script src="../../../node_modules/jquery/dist/jquery.min.js"></script>
+        <title>QUnit test</title>
+        <script src="../node_modules/jquery/dist/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mousetrap/1.4.6/mousetrap.min.js"></script>
-        <link rel="stylesheet" href="../../../app/style.css"/>
-        <link rel="stylesheet" href="../../../node_modules/qunitjs/qunit/qunit.css"/>
-        <script src="../../../node_modules/qunitjs/qunit/qunit.js"></script>
-        <script src="../../../node_modules/blanket/dist/qunit/blanket.js"></script>
-        <script src="../../cal/prototype/prototype.js"></script>
-        <script src="../../cal/evaluate/evaluate.js"></script>
-        <script src="../../cal/checkType/checkType.js"></script>
-        <script src="../../cal/calc/calc.js"></script>
-        <script src="../render/render.js"></script>
-        <script src="DOM.js" data-cover></script>
-        <script src="DOM.test.js"></script>
+        <link rel="stylesheet" href="../app/style.css"/>
+        <link rel="stylesheet" href="../node_modules/qunitjs/qunit/qunit.css"/>
+        <script src="../node_modules/qunitjs/qunit/qunit.js"></script>
+        <script src="../node_modules/blanket/dist/qunit/blanket.js"></script>
+        <script src="./calc/calc.es5.js" data-cover></script>
+        <script src="./main/main.es5.js" data-cover></script>
+        <script src="./calc/calc.test.js"></script>
+        <script src="./main./main.test.js"></script>
     </head>
     <body>
         <div id="qunit"></div>

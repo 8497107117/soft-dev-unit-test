@@ -1,3 +1,98 @@
+QUnit.module("Array.prototype.back", () => {
+    const ordinaryArray = [0, 1, 2, 3];
+    const holesArray = [0, undefined, 2, undefined];
+    const nullArray = [];
+    const numberArray = ordinaryArray;
+    const stringArray = ['test'];
+    const objectArray = [{ test: 'test', test2: 'test2' }];
+
+    QUnit.test("basic", (assert) => {
+        assert.deepEqual(ordinaryArray.back(), 3, "ordinary array");
+        assert.deepEqual(holesArray.back(), undefined, "holes array");
+        assert.deepEqual(nullArray.back(), undefined, "null array");
+    });
+    QUnit.test("type", (assert) => {
+        assert.deepEqual(numberArray.back(), 3, "ordinary array");
+        assert.deepEqual(stringArray.back(), 'test', "holes array");
+        assert.deepEqual(objectArray.back(), { test: 'test', test2: 'test2' }, "null array");
+    });
+});
+
+QUnit.module("function evaluate", () => {
+    const basicPlusTest = { actualParameter: [['val', 2], ['oper', 'add'], ['val', 3]], expect: 5 };
+    const basicSubTest = { actualParameter: [['val', 8], ['oper', 'sub'], ['val', 3]], expect: 5 };
+    const basicMulTest = { actualParameter: [['val', 2], ['oper', 'mul'], ['val', 3]], expect: 6 };
+    const basicDivTest = { actualParameter: [['val', 15], ['oper', 'div'], ['val', 3]], expect: 5 };
+    const basicModTest = { actualParameter: [['val', 8], ['oper', 'mod'], ['val', 3]], expect: 2 };
+
+    const advancedTest1 = { actualParameter: [['val', 8], ['oper', 'add'], ['val', 3], ['oper', 'sub'], ['val', 6]], expect: 5 };
+    const advancedTest2 = { actualParameter: [['val', 8], ['oper', 'mul'], ['val', 3], ['oper', 'add'], ['val', 4]], expect: 28 };
+    const advancedTest3 = { actualParameter: [['val', 6], ['oper', 'sub'], ['val', 8], ['oper', 'div'], ['val', 4]], expect: 4 };
+    const advancedTest4 = { actualParameter: [['val', 15], ['oper', 'mod'], ['val', 4], ['oper', 'mul'], ['val', 3]], expect: 9 };
+    const advancedTest5 = { actualParameter: [['val', 2], ['oper', 'add'], ['val', 3], ['oper', 'mul'], ['val', 4], ['oper', 'sub'], ['val', 8], ['oper', 'div'], ['val', 2], ['oper', 'add'], ['val', 7], ['oper', 'mod'], ['val', 2]], expect: 11 };
+
+    const basicPlusTestNeg = { actualParameter: [['val', 2], ['oper', 'add'], ['val', -3]], expect: -1 };
+    const basicSubTestNeg = { actualParameter: [['val', 8], ['oper', 'sub'], ['val', -3]], expect: 11 };
+    const basicMulTestNeg = { actualParameter: [['val', 2], ['oper', 'mul'], ['val', -3]], expect: -6 };
+    const basicDivTestNeg = { actualParameter: [['val', 15], ['oper', 'div'], ['val', -3]], expect: -5 };
+    const basicModTestNeg = { actualParameter: [['val', 8], ['oper', 'mod'], ['val', -3]], expect: 2 };
+
+    const advancedTest1Neg = { actualParameter: [['val', 8], ['oper', 'add'], ['val', -3], ['oper', 'sub'], ['val', -6]], expect: 11 };
+    const advancedTest2Neg = { actualParameter: [['val', -8], ['oper', 'mul'], ['val', -3], ['oper', 'add'], ['val', -4]], expect: 20 };
+    const advancedTest3Neg = { actualParameter: [['val', 6], ['oper', 'sub'], ['val', -8], ['oper', 'div'], ['val', 4]], expect: 8 };
+    const advancedTest4Neg = { actualParameter: [['val', 15], ['oper', 'mod'], ['val', -4], ['oper', 'mul'], ['val', -3]], expect: -9 };
+    const advancedTest5Neg = { actualParameter: [['val', 2], ['oper', 'add'], ['val', 3], ['oper', 'mul'], ['val', -4], ['oper', 'sub'], ['val', -8], ['oper', 'div'], ['val', 2], ['oper', 'add'], ['val', -7], ['oper', 'mod'], ['val', -2]], expect: -7 };
+
+    QUnit.module("without negative", () => {
+        QUnit.test("basic evaluate without negative", (assert) => {
+            assert.strictEqual(evaluate(basicPlusTest.actualParameter), basicPlusTest.expect, "basic plus correct");
+            assert.strictEqual(evaluate(basicSubTest.actualParameter), basicSubTest.expect, "basic sub correct");
+            assert.strictEqual(evaluate(basicMulTest.actualParameter), basicMulTest.expect, "basic mul correct");
+            assert.strictEqual(evaluate(basicDivTest.actualParameter), basicDivTest.expect, "basic div correct");
+            assert.strictEqual(evaluate(basicModTest.actualParameter), basicModTest.expect, "basic mod correct");
+        });
+
+        QUnit.test("advanced evaluate without negative", (assert) => {
+            assert.strictEqual(evaluate(advancedTest1.actualParameter), advancedTest1.expect, "advanced test 1 correct");
+            assert.strictEqual(evaluate(advancedTest2.actualParameter), advancedTest2.expect, "advanced test 2 correct");
+            assert.strictEqual(evaluate(advancedTest3.actualParameter), advancedTest3.expect, "advanced test 3 correct");
+            assert.strictEqual(evaluate(advancedTest4.actualParameter), advancedTest4.expect, "advanced test 4 correct");
+            assert.strictEqual(evaluate(advancedTest5.actualParameter), advancedTest5.expect, "advanced test 5 correct");
+        });
+    });
+    QUnit.module("with negative", () => {
+        QUnit.test("basic evaluate with negative", (assert) => {
+            assert.strictEqual(evaluate(basicPlusTestNeg.actualParameter), basicPlusTestNeg.expect, "basic plus correct with negative");
+            assert.strictEqual(evaluate(basicSubTestNeg.actualParameter), basicSubTestNeg.expect, "basic sub correct with negative");
+            assert.strictEqual(evaluate(basicMulTestNeg.actualParameter), basicMulTestNeg.expect, "basic mul correct with negative");
+            assert.strictEqual(evaluate(basicDivTestNeg.actualParameter), basicDivTestNeg.expect, "basic div correct with negative");
+            assert.strictEqual(evaluate(basicModTestNeg.actualParameter), basicModTestNeg.expect, "basic mod correct with negative");
+        });
+
+        QUnit.test("advanced evaluate with negative", (assert) => {
+            assert.strictEqual(evaluate(advancedTest1Neg.actualParameter), advancedTest1Neg.expect, "advanced test 1 correct with negative");
+            assert.strictEqual(evaluate(advancedTest2Neg.actualParameter), advancedTest2Neg.expect, "advanced test 2 correct with negative");
+            assert.strictEqual(evaluate(advancedTest3Neg.actualParameter), advancedTest3Neg.expect, "advanced test 3 correct with negative");
+            assert.strictEqual(evaluate(advancedTest4Neg.actualParameter), advancedTest4Neg.expect, "advanced test 4 correct with negative");
+            assert.strictEqual(evaluate(advancedTest5Neg.actualParameter), advancedTest5Neg.expect, "advanced test 5 correct with negative");
+        });
+    });
+});
+
+QUnit.module("checkType", () => {
+    const valTest = ['val', 1];
+    const operTest = ['oper', 'add'];
+
+    QUnit.test("isVal", (assert) => {
+        assert.strictEqual(isVal(valTest), true, "cmd[0] is val");
+        assert.strictEqual(isVal(operTest), false, "cmd[0] is oper");
+    });
+    QUnit.test("isOper", (assert) => {
+        assert.strictEqual(isOper(valTest), false, "cmd[0] is val");
+        assert.strictEqual(isOper(operTest), true, "cmd[0] is oper");
+    });
+});
+
 QUnit.module("Class Calc", () => {
     let testClass = new Calc();
     QUnit.module("member: reset", () => {
